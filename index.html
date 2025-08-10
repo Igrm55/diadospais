@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uma Surpresa Para Você, Pai!</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* Custom styles para fontes e cores */
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: #111827; /* bg-gray-900 */
+            color: #F3F4F6; /* text-gray-200 */
+            overflow: hidden; /* Previne scroll na tela de bloqueio */
+        }
+        h1, h2, h3 {
+            font-family: 'Montserrat', sans-serif;
+        }
+        .text-gold {
+            color: #D4AF37;
+        }
+        .bg-gold {
+            background-color: #D4AF37;
+        }
+        .border-gold {
+            border-color: #D4AF37;
+        }
+
+        /* Animação de fade-in para o ScrollReveal */
+        .reveal {
+            visibility: hidden;
+        }
+
+        /* Efeito de sobreposição no hero */
+        .hero-overlay::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(17, 24, 39, 0.7);
+            z-index: 1;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        /* Tela de Bloqueio (Surpresa) */
+        #lock-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #111827;
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 1s ease-out;
+        }
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+        }
+        #lock-screen.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        #main-content {
+            display: none; /* Conteúdo principal começa escondido */
+        }
+
+        /* Ajustes na Timeline para mobile */
+        .timeline-item {
+            margin-bottom: 50px;
+        }
+        @media (min-width: 768px) {
+            .timeline-item {
+                margin-bottom: 2rem; /* 32px */
+            }
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Tela de Bloqueio (Surpresa) -->
+    <div id="lock-screen">
+        <div id="particles-js"></div>
+        <div class="text-center z-10 p-4">
+            <h2 class="text-3xl md:text-5xl font-bold text-white mb-4">Uma surpresa especial...</h2>
+            <p class="text-lg md:text-xl text-gray-300 mb-8">Para o melhor pai do mundo.</p>
+            <button id="reveal-button" class="bg-gold text-gray-900 font-bold py-3 px-8 rounded-full text-lg hover:bg-yellow-500 transition-all duration-300 transform hover:scale-105 shadow-lg">
+                <i class="fas fa-gift mr-2"></i>
+                Clique para revelar
+            </button>
+        </div>
+    </div>
+
+    <!-- Conteúdo Principal -->
+    <div id="main-content">
+        <!-- Hero Section -->
+        <header 
+            class="relative min-h-screen flex items-center justify-center text-center bg-cover bg-center bg-fixed" 
+            style="background-image: url('https://i.ibb.co/Md2fCXV/4c199427-dda7-4a0e-b080-ef8f57a3ece9.jpg');">
+            <div class="hero-overlay"></div>
+            <div class="hero-content p-8">
+                <h1 class="text-5xl md:text-7xl font-black text-white uppercase tracking-wider reveal">
+                    Feliz Dia dos Pais
+                </h1>
+                <p class="text-2xl md:text-4xl mt-4 font-bold text-gold reveal">
+                    Pai Rogério
+                </p>
+                <div class="mt-12 reveal">
+                    <a href="#historia" aria-label="Rolar para a história"><i class="fas fa-chevron-down text-white text-4xl animate-bounce"></i></a>
+                </div>
+            </div>
+        </header>
+
+        <main class="bg-gray-900">
+            <!-- Seção Nossa História (Timeline) -->
+            <section id="historia" class="py-20 px-4 md:px-8">
+                <div class="max-w-4xl mx-auto text-center">
+                    <h2 class="text-4xl font-bold text-white mb-4 reveal">Nossa História</h2>
+                    <p class="text-lg text-gray-400 mb-12 reveal">Alguns marcos que me fazem te admirar tanto.</p>
+                </div>
+                <div class="max-w-3xl mx-auto relative">
+                    <!-- Linha da timeline (visível apenas em telas maiores) -->
+                    <div class="hidden md:block absolute left-1/2 h-full w-1 bg-gray-700 transform -translate-x-1/2"></div>
+
+                    <!-- Itens da Timeline -->
+                    <div class="timeline-item md:flex md:justify-between md:items-center w-full reveal">
+                        <div class="md:order-1 md:w-5/12"></div>
+                        <div class="z-20 flex items-center order-1 bg-gold shadow-xl w-12 h-12 rounded-full mx-auto md:mx-0">
+                            <i class="fas fa-map-marker-alt w-full text-gray-900 text-2xl text-center"></i>
+                        </div>
+                        <div class="md:order-1 bg-gray-800 rounded-lg shadow-xl md:w-5/12 px-6 py-4 mt-4 md:mt-0">
+                            <h3 class="font-bold text-gold text-xl mb-1 text-center md:text-left">Origens Humildes</h3>
+                            <p class="text-gray-300 text-center md:text-left">Nascido em São Paulo, com passagem pela roça de Barra de Mendes, você aprendeu cedo o valor do trabalho.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item md:flex md:justify-between md:flex-row-reverse md:items-center w-full reveal">
+                        <div class="md:order-1 md:w-5/12"></div>
+                        <div class="z-20 flex items-center order-1 bg-gold shadow-xl w-12 h-12 rounded-full mx-auto md:mx-0">
+                            <i class="fas fa-briefcase w-full text-gray-900 text-2xl text-center"></i>
+                        </div>
+                        <div class="md:order-1 bg-gray-800 rounded-lg shadow-xl md:w-5/12 px-6 py-4 mt-4 md:mt-0">
+                            <h3 class="font-bold text-gold text-xl mb-1 text-center md:text-left">Trabalho Desde Cedo</h3>
+                            <p class="text-gray-300 text-center md:text-left">Garçom, banco, vendedor… cada etapa foi um degrau construído com dedicação e muita garra.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item md:flex md:justify-between md:items-center w-full reveal">
+                        <div class="md:order-1 md:w-5/12"></div>
+                        <div class="z-20 flex items-center order-1 bg-gold shadow-xl w-12 h-12 rounded-full mx-auto md:mx-0">
+                            <i class="fas fa-star w-full text-gray-900 text-2xl text-center"></i>
+                        </div>
+                        <div class="md:order-1 bg-gray-800 rounded-lg shadow-xl md:w-5/12 px-6 py-4 mt-4 md:mt-0">
+                            <h3 class="font-bold text-gold text-xl mb-1 text-center md:text-left">Foco e Pontualidade</h3>
+                            <p class="text-gray-300 text-center md:text-left">Focado, destemido e pontual (às vezes até demais kkkkk) — marcas registradas do seu caráter.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item md:flex md:justify-between md:flex-row-reverse md:items-center w-full reveal">
+                        <div class="md:order-1 md:w-5/12"></div>
+                        <div class="z-20 flex items-center order-1 bg-gold shadow-xl w-12 h-12 rounded-full mx-auto md:mx-0">
+                            <i class="fas fa-handshake w-full text-gray-900 text-2xl text-center"></i>
+                        </div>
+                        <div class="md:order-1 bg-gray-800 rounded-lg shadow-xl md:w-5/12 px-6 py-4 mt-4 md:mt-0">
+                            <h3 class="font-bold text-gold text-xl mb-1 text-center md:text-left">Caminhos que se Encontram</h3>
+                            <p class="text-gray-300 text-center md:text-left">Mesmo com a distância, achamos nosso jeito: nas minhas férias, estou com você, aprendendo e ajudando na empresa.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Seção Galeria -->
+            <section id="galeria" class="py-20 px-4 md:px-8 bg-gray-800">
+                <div class="max-w-6xl mx-auto text-center">
+                    <h2 class="text-4xl font-bold text-white mb-4 reveal">Galeria</h2>
+                    <p class="text-lg text-gray-400 mb-12 reveal">Nossos momentos que guardo com carinho.</p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div class="reveal"><figure class="overflow-hidden rounded-lg shadow-lg group"><img src="https://i.ibb.co/Md2fCXV/4c199427-dda7-4a0e-b080-ef8f57a3ece9.jpg" alt="Foto 1" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"></figure></div>
+                        <div class="reveal"><figure class="overflow-hidden rounded-lg shadow-lg group"><img src="https://i.ibb.co/vCCMTm98/20180717-193758-Original.jpg" alt="Foto 2" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"></figure></div>
+                        <div class="reveal"><figure class="overflow-hidden rounded-lg shadow-lg group"><img src="https://i.ibb.co/kZ0BvHQ/20171125-105853-Original.jpg" alt="Foto 3" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"></figure></div>
+                        <div class="reveal"><figure class="overflow-hidden rounded-lg shadow-lg group"><img src="https://i.ibb.co/B295pnCd/20180107-163822-Original.jpg" alt="Foto 4" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"></figure></div>
+                        <div class="reveal"><figure class="overflow-hidden rounded-lg shadow-lg group"><img src="https://i.ibb.co/whm5CQ4k/20180107-164130-Original.jpg" alt="Foto 5" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"></figure></div>
+                        <div class="reveal"><figure class="overflow-hidden rounded-lg shadow-lg group"><img src="https://i.ibb.co/cc5dkW9K/20171126-115116-Original.jpg" alt="Foto 6" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"></figure></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Seção Carta -->
+            <section id="carta" class="py-20 px-4 md:px-8">
+                <div class="max-w-3xl mx-auto">
+                    <div class="bg-gray-800 p-8 md:p-12 rounded-lg shadow-2xl border-t-4 border-gold reveal">
+                        <h2 class="text-4xl font-bold text-white text-center mb-8">Carta para o meu pai</h2>
+                        <div class="text-gray-300 text-lg leading-relaxed space-y-6">
+                            <p>Pai, essa é a minha pequena grande homenagem para você. Seu nome é Rogério, e sua história sempre foi uma bússola para mim. Uma história que começou lá em São Paulo, passou pela simplicidade da roça em Barra de Mendes, e me ensinou, antes de tudo, sobre a força do trabalho. Lembro de você contando das suas batalhas, de como começou de baixo, foi garçom, trabalhou em banco, vendeu, batalhou – e foi subindo degrau por degrau, com uma garra que eu demorei para entender, mas que hoje admiro profundamente.</p>
+                            <p>Essa garra se traduz no homem que você é. Focado, destemido, pontual (às vezes até demais, né? kkkkk), e com uma dedicação que beira a obsessão em algumas ocasiões. Mas foi exatamente essa combinação que te trouxe até aqui. Você nunca esperou atalhos, nunca quis o caminho mais fácil: você construiu a sua própria estrada, com suor e honestidade.</p>
+                            <p>Houve um tempo em que a vida, com seus caminhos inesperados, acabou nos distanciando fisicamente. Mas quero que saiba que nunca foi por falta de amor ou por brigas. Nossa relação sempre foi um porto seguro para mim. Você sempre me tratou como filho, me ensinou o caminho certo a seguir (ou, pelo menos, como não fazer tantas cagadas kkkkkkk). A distância geográfica nos afastou um pouco, mas nunca conseguiu mexer no que realmente importa: o nosso vínculo.</p>
+                            <p>E nós, do nosso jeito, encontramos a solução. Cada período de férias da faculdade se tornou a nossa chance de reconectar. Correr pra te ver, ajudar na empresa, e simplesmente estar ao seu lado... é nesses momentos que eu tenho ainda mais certeza do orgulho imenso que sinto do pai que tenho.</p>
+                            <p>Eu olho para você e, sinceramente, não vejo ninguém melhor no que faz. Você me inspira pelo exemplo, pela coragem de recomeçar, pela humildade de aprender e pela firmeza de seguir em frente, mesmo quando tudo parecia difícil. Você é a prova viva de que com determinação, a gente chega onde quer.</p>
+                            <p>Pai, eu tenho certeza absoluta de que você ainda vai prosperar muito mais. Seu esforço, sua integridade, tudo isso será recompensado. Esta página é só uma pequena representação de um sentimento gigante que mora em mim: <span class="font-bold text-gold">admiração, respeito e um amor que não cabe no peito.</span> Obrigado por ser meu espelho, meu herói e meu maior orgulho.</p>
+                            <p class="font-bold text-xl text-center mt-8">Feliz Dia dos Pais! Te amo demais.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="bg-gray-800 border-t border-gray-700 py-8 text-center">
+            <p class="text-gray-400">Feito com todo o amor do mundo.</p>
+            <p class="text-gold font-bold mt-1">Seu filho.</p>
+        </footer>
+    </div>
+
+    <!-- particles.js -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <!-- ScrollReveal JS -->
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <script>
+        // Configuração do Particles.js para a tela de bloqueio
+        particlesJS("particles-js", {
+            "particles": {
+                "number": {"value": 80, "density": {"enable": true, "value_area": 800}},
+                "color": {"value": "#ffffff"},
+                "shape": {"type": "circle", "stroke": {"width": 0, "color": "#000000"}, "polygon": {"nb_sides": 5}},
+                "opacity": {"value": 0.5, "random": false, "anim": {"enable": false, "speed": 1, "opacity_min": 0.1, "sync": false}},
+                "size": {"value": 3, "random": true, "anim": {"enable": false, "speed": 40, "size_min": 0.1, "sync": false}},
+                "line_linked": {"enable": true, "distance": 150, "color": "#ffffff", "opacity": 0.4, "width": 1},
+                "move": {"enable": true, "speed": 2, "direction": "none", "random": false, "straight": false, "out_mode": "out", "bounce": false, "attract": {"enable": false, "rotateX": 600, "rotateY": 1200}}
+            },
+            "interactivity": {"detect_on": "canvas", "events": {"onhover": {"enable": true, "mode": "repulse"}, "onclick": {"enable": true, "mode": "push"}, "resize": true}, "modes": {"grab": {"distance": 400, "line_linked": {"opacity": 1}}, "bubble": {"distance": 400, "size": 40, "duration": 2, "opacity": 8, "speed": 3}, "repulse": {"distance": 200, "duration": 0.4}, "push": {"particles_nb": 4}, "remove": {"particles_nb": 2}}},
+            "retina_detect": true
+        });
+
+        // Lógica para revelar o conteúdo
+        const lockScreen = document.getElementById('lock-screen');
+        const revealButton = document.getElementById('reveal-button');
+        const mainContent = document.getElementById('main-content');
+        const body = document.body;
+
+        revealButton.addEventListener('click', () => {
+            lockScreen.classList.add('hidden');
+            
+            // Espera a transição da tela de bloqueio terminar
+            setTimeout(() => {
+                body.style.overflow = 'auto'; // Libera o scroll
+                mainContent.style.display = 'block';
+
+                // Inicia o ScrollReveal APÓS o conteúdo ser exibido
+                const sr = ScrollReveal({
+                    distance: '50px',
+                    duration: 1500,
+                    easing: 'cubic-bezier(0.5, 0, 0, 1)',
+                    reset: false,
+                    viewFactor: 0.2
+                });
+
+                sr.reveal('.reveal', {
+                    origin: 'bottom',
+                    interval: 100
+                });
+            }, 1000); // Mesmo tempo da transição de opacidade
+        });
+    </script>
+</body>
+</html>
